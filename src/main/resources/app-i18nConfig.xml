@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<description>
+		spring mvc国际化。
+		原理：org.springframework.web.servlet.i18n.CookieLocaleResolver中定义一个默认语言属性defaultLocale，
+		比如zh_CN，spring会加载resources/i18n下的对应后缀的文件。在前端用
+		spring:message标签就可以得到。前端改变
+		语言的话，调用baseUtil.changeLang改变一下cookie中的lang的内容，spring会自动转换语言。
+	</description>
+
+	<!-- 这个id已经要叫messageSource -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<!-- 国际化信息所在的文件名 -->
+		<property name="basenames">
+			<list>
+				<!-- Bean的字段名 -->
+				<value>classpath:i18n/bean</value>
+				<!-- 错误提醒内容 -->
+				<value>classpath:i18n/error</value>
+				<!-- 其他所有内容 -->
+				<value>classpath:i18n/normal</value>
+			</list>
+		</property>
+		<property name="cacheSeconds" value="0" />
+		<!-- 如果在国际化资源文件中找不到对应代码的信息，就用这个代码作为名称 -->
+		<property name="useCodeAsDefaultMessage" value="true" />
+	</bean>
+	<bean id="localeChangeInterceptor"
+		class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+		<property name="paramName" value="lang" />
+	</bean>
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+		<!-- 设置哪个cookie的名字来接收用户指定的语言标识，默认为org.springframework.web.servlet.i18n.CookieLocaleResolver.LOCALE -->
+		<property name="cookieName" value="lang" />
+		<!-- 系统默认语言。可选项：中文:zh_CN；英文:en_US；繁体:zh_TW；修改这个要对应修改ws-common-bgConfig.xml中的defaultLocale， 
+			这个多语言标志词其实可以随便起，只要这个参数和上面的“basenames”组成文件名能找到多语言文件就行了 -->
+		<property name="defaultLocale" value="zh_CN" />
+		<property name="cookieMaxAge" value="999999" />
+	</bean>
+
+</beans>

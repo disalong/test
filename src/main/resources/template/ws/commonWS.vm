@@ -1,0 +1,8 @@
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:bas="http://baseUserWS.tingbo.com">
+   <soap:Header/>
+   <soap:Body>
+      <bas:commonWebserviceRequesHandle>
+         <requestParamsJson>PARAMS_JSON</requestParamsJson>
+      </bas:commonWebserviceRequesHandle>
+   </soap:Body>
+</soap:Envelope>

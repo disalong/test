@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/context
+      http://www.springframework.org/schema/context/spring-context.xsd
+      http://www.springframework.org/schema/aop
+      http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<description>切面配置</description>
+
+	<aop:aspectj-autoproxy />
+
+	<aop:config>
+		<aop:pointcut id="controllerPointCut"
+			expression="execution(* com.tingbo.*.controller.*.*(..))" />
+
+		<!-- <aop:aspect>标签的order属性决定切面的优先级，越小越优先，缺省时以配置文件的顺序执行 -->
+		<!-- webservice交互 -->
+		<aop:aspect id="webServiceInteractionAspectorId" ref="webServiceInteractionAspector">
+			<aop:before pointcut-ref="controllerPointCut" method="preHandle" />
+			<aop:after-returning pointcut-ref="controllerPointCut"
+				method="aftHandle" />
+		</aop:aspect>
+
+		<!-- 加载系统配置到前端 -->
+		<aop:aspect id="loadConfToForeAspectorId" ref="loadConfToForeAspector">
+			<aop:before pointcut-ref="controllerPointCut" method="preHandle" />
+			<aop:after-returning pointcut-ref="controllerPointCut"
+				method="aftHandle" />
+		</aop:aspect>
+	</aop:config>
+	<bean id="webServiceInteractionAspector" class="com.tingbo.baseCommon.aspect.WebServiceInteractionAspector" />
+	<bean id="loadConfToForeAspector" class="com.tingbo.baseCommon.aspect.LoadConfToForeAspector" />
+
+</beans>
+

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<description>前台系统配置</description>
+
+	<!-- init-method用于当spring实例化bean并注入属性值之后调用的第一个方法，因为如果我们使用static静态语句块进行初始化操作，此时的对象属性还未被注入 -->
+	<bean id="foregroundConfigLoader" class="com.tingbo.baseCommon.config.ForegroundConfigLoader"
+		init-method="init">
+		<property name="foregroundConfig">
+			<description>前端配置</description>
+			<map>
+				<!-- 默认主题 -->
+				<entry key="defaultTheme" value="fiori" />
+				<!-- <entry key="defaultTheme" value="blueopal" /> -->
+				<!-- 用户是否可换主题，Y：可换，其他：不可换 -->
+				<entry key="canThemeChange" value="Y" />
+				<!-- cookie默认过期天数 -->
+				<entry key="cookieDefultExpires" value="365" />
+				<!-- 表格分页单页默认记录数 -->
+				<entry key="pageSize" value="30"></entry>
+				<!-- 表格默认初始化页码 -->
+				<entry key="page" value="1"></entry>
+				<!-- 表格页码 显示数量 -->
+				<entry key="pageButtonCount" value="5"></entry>
+				<!-- 表格默认高度 -->
+				<entry key="gridHeight" value="500"></entry>
+				<!-- 心跳时间，页面定时发送探测请求判断用户会话是否超时，是否有异地登录等，这里设定定时请求的时间，单位：秒 -->
+				<entry key="heartBeatSeconds" value="30"></entry>
+				<!-- 用户验证码可重新发送时间，单位秒，正整数，填写0表示马上可重新发送 -->
+				<entry key="mobileVCodeRetryTime" value="60" />
+			</map>
+		</property>
+
+	</bean>
+
+</beans>

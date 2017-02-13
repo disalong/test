@@ -1,0 +1,477 @@
+.uc {
+    margin: 17px auto 50px;
+    width: 980px;
+}
+.w-user-info {
+    background: #fafafa none repeat scroll 0 0;
+    border-bottom: 1px solid #f0f0f0;
+    color: #666;
+    font: 12px/48px "宋体";
+    height: 49px;
+    margin-bottom: 15px;
+    width: 100%;
+    .user-name-wrap {
+		.user-name {
+		    font-family: "微软雅黑",Simhei;
+		    font-size: 16px;
+		    padding: 0 15px 0 30px;
+		}    
+		span {
+		    display: block;
+		    float: left;
+		}
+    }
+    .user-money-wrap {
+	    display: table-cell;
+	    height: 23px;
+	    padding: 10px 5px 0 0;
+	    vertical-align: middle;
+	    li {
+		    border-right: 1px solid #dfdfdf;
+		    float: left;
+		    height: 20px;
+		    line-height: 20px;
+		    padding: 3px 15px 0 20px;
+		    &.last {
+			    border-right: 0 none;
+			}
+		    .org {
+			    color: #fd8f52;
+			    font-family: Arial;
+			    font-size: 22px;
+			    line-height: 20px;
+			}
+		    span {
+			    display: block;
+			    float: left;
+			}
+		    .tit {
+			    line-height: 100%;
+			    margin-top: 5px;
+			}
+		}
+	}
+}
+.fl {
+    float: left;
+}
+.fr {
+    float: right;
+}
+.w-user-info .user-name-wrap .account-info-con, .w-user-info .user-name-wrap .account-info-btn {
+    padding-left: 10px;
+}
+.link {
+    color: #73abc9;
+    cursor: pointer;
+    :hover {
+	    text-decoration: underline;
+	}
+}
+a:focus, *:focus {
+	outline:0 none;
+}
+.uc .uc-wrap::before, .uc .uc-wrap::after {
+    content: "";
+    display: table;
+}
+.uc .uc-wrap::before, .uc .uc-wrap::after {
+    content: "";
+    display: table;
+}
+.uc {
+	.uc-side {
+	    float: left;
+	}
+	.uc-wrap {
+		&:after {
+		    clear: both;
+		}
+	}
+	.uc-main {
+	    border: 1px solid #f0f0f0;
+	    color: #666;
+	    float: right;
+	    padding: 0 39px 60px;
+	    width: 750px;
+	}
+	.btn-pink {
+	    background: #ff4883 none repeat scroll 0 0;
+	    border-bottom: 1px solid #fd518b;
+	}
+	.btn-m {
+	    border: 0 none;
+	    border-radius: 1px;
+	    color: #fff;
+	    display: inline-block;
+	    font-size: 14px;
+	    height: 30px;
+	    line-height: 30px;
+	    padding: 0 16px;
+	}
+	.btn-gray {
+	    background: #ebebeb none repeat scroll 0 0;
+	    border-bottom: 1px solid #bababa;
+	    color: #999;
+	}
+}
+.mr10 {
+    margin-right: 10px;
+}
+.w-nav {
+    background: #fafafa none repeat scroll 0 0;
+    width: 150px;
+    ul {
+    	&.sub-nav {
+		    display: none;
+		    padding: 2px 0 5px;
+		    li {
+			    border-bottom: 0 none;
+			    padding-left: 0;
+			    a {
+				    display: block;
+				    line-height: 28px;
+				    padding-left: 30px;
+				    .sub-nav-ico {
+					    color: #ccc;
+					    padding-right: 5px;
+					}
+				}
+			}
+		}
+    }
+    li {
+	    border-bottom: 1px solid #f0f0f0;
+	    .last {
+		    border-bottom: 0 none;
+		}
+	    .nav-txt {
+		    cursor: pointer;
+		    display: block;
+		    font: 14px/100% "微软雅黑",Simhei;
+		    padding: 13px 0 13px 32px;
+		}
+		&.nav-active {
+	    	a.nav-txt {
+			    padding-bottom: 10px;
+			  	&.nav-link {
+				    padding-bottom: 13px;
+				}
+				&:hover {
+					color:#ff568c;
+				}
+			}
+			ul {
+				&.sub-nav {
+				    display: block;
+				}
+			}
+	    }
+		&.nav-current {
+			a.nav-txt {
+			    color: #ff658c;
+			}
+		}
+		a {
+		    color: #666;
+		}
+	}
+}
+.w-nav ul.sub-nav li a:hover, .w-nav ul.sub-nav li a.sub-nav-active {
+    background: #ff658c none repeat scroll 0 0;
+    color: #fff;
+}
+.w-nav ul.sub-nav li a:hover .sub-nav-ico, .w-nav ul.sub-nav li a.sub-nav-active .sub-nav-ico {
+    color: #fff;
+}
+.w-phone-info {
+    margin-top: 5px;
+    .sprite-line {
+	    background-position: -232px -784px;
+	    background-repeat: no-repeat;
+	    display: block;
+	    height: 7px;
+	    width: 100%;
+	}
+    p {
+	    background: #fafafa none repeat scroll 0 0;
+    	&.phone-num {
+		    color: #333;
+		    font-family: Arial;
+		    font-size: 18px;
+		    line-height: 18px;
+		    padding: 22px 0 5px 16px;
+		}
+		&.phone-tips {
+		    color: #666;
+		    font-family: "微软雅黑",Simhei;
+		    line-height: 22px;
+		    padding: 0 0 14px 16px;
+		}
+    }
+}
+.w-address .add-address-wrap .edit-address-btn a span, .w-phone-info .sprite-line, .w-apply-refund .error-tip .warning-ico, .w-apply-refund .error-tip .warning-ico.error-ico, .w-refund-detail-wrap .detail-item .icon-hide span, .w-refund-detail-wrap .detail-item .icon-show span, .w-refund-faq h5 span, .w-refund-faq .question-wrap ul li h6 span, .w-refund-faq .question-wrap ul .current-show h6 span, .w-order-state-wrap-new .order-refund-progress .ico-arrow, .w-order-state-wrap-new .order-refund-progress-list li .progress-icon, .w-order-state-wrap-new .order-refund-progress-list li .progress-icon-success, .w-order-state-wrap-new .order-refund-progress-list .progress-gray .progress-icon, .w-order-state-wrap-new .order-refund-progress-list .progress-gray .progress-icon-success-gray, .w-order-state-wrap-new .order-refund-progress-list .progress-gray .progress-icon-fail, .p-order-wuliu-detail .address-info-edit-active .address-name .icon-sprite, .w-redpacket-detail .bg-available {
+    background-image: url("//gss0.bdstatic.com/8r1VfDn-KggZnd_b8IqT0jB-xx1xbK/static/user/pkg/user_z_fe074f3.png");
+}
+.n-nav::before, .n-nav::after {
+    content: "";
+    display: table;
+}
+.n-nav::before, .n-nav::after {
+    content: "";
+    display: table;
+}
+.n-nav-tabs {
+	border-bottom: 1px solid #ddd;
+    > li {
+	    float: left;
+	    font-size: 14px;
+	    margin-bottom: -1px;
+	    padding: 13px 16px;
+	    a {
+		    padding: 3px;
+		}
+	}
+}
+.n-nav {
+    list-style: outside none none;
+    margin-bottom: 0;
+    padding: 0;
+    &:after {
+	    clear: both;
+	}
+}
+.n-nav-tabs > li.n-active a, .n-nav-tabs > li a:hover {
+    background: #ff4883 none repeat scroll 0 0;
+    color: #fff;
+}
+.n-tabs-bd {
+    overflow: hidden;
+    position: relative;
+    transition: height 0.3s ease 0s;
+    .n-active ~ .n-tab-panel {
+	    transform: translateX(100%);
+	}
+    .n-tab-panel {
+    	float: left;
+	    position: absolute;
+	    top: 0;
+	    transform: translateX(-100%);
+	    transition: transform 0.3s ease 0s;
+	    visibility: hidden;
+	    width: 100%;
+    	&.n-active {
+		    position: relative;
+		    transform: translateX(0px);
+		    visibility: visible;
+		}
+    }
+}
+.password-list {
+    padding: 4px 16px;
+    .row {
+	    padding: 12px 0;
+	}
+	.row-aside {
+	    float: right;
+	    width: 245px;
+	    padding-right: 10px;
+	}
+	.setting {
+	    display: inline-block;
+	    width: 120px;
+	}
+	.success .fa {
+	    color: #5eb95e;
+	}
+	.disabled {
+	    color: #8c8c8c;
+	}
+	.title {
+	    color: #878787;
+	    vertical-align: top;
+	}
+	.iconfont {
+	    padding-right: 10px;
+	}
+}
+.password-list .warning .iconfont, .password-list .warning {
+    color: #daae00;
+}
+.w-account-info {
+	.account-info {
+	    font-size: 12px;
+	    padding: 5px 0;
+	    li {
+		    overflow: hidden;
+		    padding-left: 20px;
+		    span {
+		    	float: left;
+    			line-height: 34px;
+		    	&.account-info-tit {
+				    width: 70px;
+				}
+				&.account-info-con {
+				    width: 180px;
+				}
+				&.account-info-btn {
+				    color: #dfdfdf;
+				}
+		    }
+		}
+	}
+}
+.w-add-address-form {
+    height: auto;
+    overflow: hidden;
+    width: 100%;
+    .red {
+	    color: #ff4f88;
+	}
+    li {
+	    height: 32px;
+	    line-height: 32px;
+	    padding: 10px 0 5px;
+	    .add-address-tit {
+		    padding-right: 5px;
+		    text-align: left;
+		    width: 120px;
+		}
+		.add-address-con {
+		    width: 510px;
+		    select {
+			    border: 1px solid #f0f0f0;
+			    height: 32px;
+			    margin-right: 10px;
+			    padding: 2px;
+			    width: 150px;
+			}
+			.form {
+			    border: 1px solid #f0f0f0;
+			    height: 20px;
+			    line-height: 20px;
+			    padding: 5px 3px;
+			    width: 194px;
+			}
+		}
+	}
+}
+.w-address {
+    h5 {
+	    font-family: "微软雅黑",Simhei;
+	    line-height: 100%;
+	    padding: 20px 0 15px 20px;
+	}
+	.add-address-active {
+		.w-add-address-form {
+			.msg {
+			    background: rgba(0, 0, 0, 0) url("//gss0.bdstatic.com/8r1VfDn7KggZnd_b8IqT0jB-xx1xbK/static/user/img/coupon_icon_warning_f254e0b.png") no-repeat scroll 0 center;
+			    display: inline-block;
+			    height: 20px;
+			    line-height: 20px;
+			    padding: 0 0 0 20px;
+			}
+			.add-address-tit {
+			    padding-right: 5px;
+			    text-align: right;
+			    width: 90px;
+			}
+			li {
+			    height: 26px;
+			    line-height: 26px;
+			    padding: 0 0 15px;
+			}
+			.red {
+			    color: #f66;
+			    padding-right: 3px;
+			}
+			.ml10 {
+			    margin-left: 10px;
+			}
+			.msg {
+			    background: rgba(0, 0, 0, 0) url("//gss0.bdstatic.com/8r1VfDn7KggZnd_b8IqT0jB-xx1xbK/static/user/img/coupon_icon_warning_f254e0b.png") no-repeat scroll 0 center;
+			    display: inline-block;
+			    height: 20px;
+			    line-height: 20px;
+			    padding: 0 0 0 20px;
+			}
+			.msg-hide {
+			    display: none;
+			}
+			.add-address-con {
+			    width: 600px;
+			    .form {
+				    border: 1px solid #f0f0f0;
+				    height: 14px;
+				    line-height: 14px;
+				    padding: 5px 3px;
+				    width: 194px;
+				}
+				.pl5 {
+				    padding-left: 5px;
+				}
+			    .wid390 {
+				    width: 390px;
+				}
+				.wid60 {
+				    width: 60px;
+				}
+				.wid100 {
+				    width: 100px;
+				}
+				select {
+				    border: 1px solid #f0f0f0 !important;
+				    height: 24px !important;
+				    margin-right: 10px !important;
+				    padding: 2px !important;
+				    width: 125px;
+				}
+			}
+		}
+	}
+	.add-address-wrap {
+	    padding: 0 15px;
+	    .edit-address-btn {
+		    display: none;
+		}
+	    .uc-address-btn {
+		    line-height: 20px;
+		    padding: 12px 0 5px;
+		    .w-add-address-form {
+			    display: none;
+			}
+		    a {
+			    color: #666;
+			    display: inline-block;
+			    padding-left: 25px;
+			    position: relative;
+			    span {
+				    background-position: -362px -715px;
+				    background-repeat: no-repeat;
+				    display: inline-block;
+				    height: 20px;
+				    left: 0;
+				    position: absolute;
+				    top: 0;
+				    width: 20px;
+				}
+			}
+		}
+	}
+}
+.w-add-address-form {
+	display:none;
+}
+h5 {
+    font-size: 14px;
+}
+.w-add-address-form li select, .w-add-address-form li input {
+    color: #666;
+    vertical-align: middle;
+}
+.w-address .add-address-active .w-add-address-form li select, .w-address .add-address-active .w-add-address-form li input {
+    vertical-align: middle;
+}
+.detail-wrap .detail-item .order-info .btn-edit, .p-login .header .logo, .p-login .body .login-area .tang-pass-login .pass-custom-sms-switch .pass-custom-sms-btn, .p-login .body .login-area .tang-pass-login .pass-custom-sms-switch .pass-custom-normal-btn, .p-login .body .login-area .tang-pass-login .pass-form-item label.pass-label-userName, .p-login .body .login-area .tang-pass-login .pass-form-item label.pass-label-userName.pass-text-label-focus, .p-login .body .login-area .tang-pass-login .pass-form-item label.pass-label-password, .p-login .body .login-area .tang-pass-login .pass-form-item label.pass-label-password.pass-text-label-focus, .p-login .body .login-area .tang-pass-login .pass-form-item label.pass-label-smsPhone, .p-login .body .login-area .tang-pass-login .pass-form-item label.pass-label-smsPhone.pass-text-label-focus, .p-login .body .login-area .tang-pass-login .pass-form-item .pass-clearbtn, .p-login .body .login-area .tang-pass-login .pass-form-item .pass-clearbtn:hover, .p-login .body .login-area .tang-pass-login-phoenix .pass-phoenix-list .bd-acc-nuomi .phoenix-btn-item, .ui-dialog-pass-update-success .ui-dialog-body .img, .ui-dialog-pass-update-success .ui-dialog-body .dialog-btn-close, .ui-dialog-pass-sms-conflict-no4 .ui-passport-sms-no4 .tips .tip-icon, .ui-dialog-pass-sms-conflict-no4-step2 .ui-passport-sms-no4 .tips .tip-icon, .ui-dialog-pass-sms-conflict-no5 .ui-passport-sms-no4 .tips .tip-icon, .ui-dialog-pass-sms-conflict-no4 .ui-passport-sms-no5 .tips .tip-icon, .ui-dialog-pass-sms-conflict-no4-step2 .ui-passport-sms-no5 .tips .tip-icon, .ui-dialog-pass-sms-conflict-no5 .ui-passport-sms-no5 .tips .tip-icon, .ui-dialog-pass-sms-conflict-no4-step2 .ui-passport-sms-no4 .clear-btn, .ui-dialog-pass-sms-conflict-no4-step2 .ui-passport-sms-no4 .err-icon, .w-refund-result .refund-result h2 .refund-success, .w-refund-result .refund-result h2 .refund-fail, .uc .order-list .ugc-star-wrap-uc, .uc .order-list .ugc-star-wrap-uc .ugc-star, .w-account-info .account-info li .verify-line .error-msg .error-icon, .w-address .add-address-wrap .add-address-btn a span, .w-address .add-address-wrap .add-address-btn-disabled a span {
+    background-image: url("//gss0.bdstatic.com/8r1VfDn-KggZnd_b8IqT0jB-xx1xbK/static/user/pkg/user_z_fe074f3.png");
+}

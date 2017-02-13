@@ -1,0 +1,276 @@
+@ie9-10:~"\9\0";
+.base-main-grid {
+	table.k-selectable {
+		td {
+			border-width:1px 0 0 0;
+		}
+	}
+    left: 0;
+    position: relative;
+    top: 20px;
+    z-index: 1200;
+    border-color: #ddd;
+    td {
+		padding:0.45em 1.286em;
+		.check-one-label {
+			position:relative; 
+		}
+	}
+	.k-grid-toolbar {
+		button {
+			height:32.7px;
+			width:32.7px;
+			margin-left:5px;
+		}
+		.base-grid-toolbar-dropdownlist {
+			margin-left:5px;
+		}
+	}
+    .k-pager-wrap {
+    	min-height:0px;
+    	.k-pager-refresh {
+    		margin-top:8px;
+    		.k-i-refresh {
+    			margin-top : 8px;
+				margin-right : 4px;
+    		}
+    	}
+    	a {
+    		.k-icon {
+    			margin-top : 3px;
+				margin-right : 2px;
+    		}
+    	}
+    	.k-pager-nav {
+    		padding-top:3px;
+    	}
+    	.k-pager-input {
+    		padding-top:9px;
+    	}
+    	.k-pager-sizes {
+    		padding-top:13px;
+    		.k-dropdown-wrap {
+    			height : 28px;
+				margin-top : -2px;
+				.k-input {
+					line-height:0.8em;
+				}
+				.k-i-arrow-s {
+					margin-top:-2px;
+				}
+    		}
+    	}
+    }
+    .k-grid-header {
+    	th {
+    		padding: 0.5em 0.5em 0.5em;
+    		&.k-header {
+	    		padding: 0.61em 0.6em 0.4em;
+	    		&[data-field='selectCheckbox'] {
+	    			padding: 0;
+	    			.k-link {
+	    				position: relative; 
+	    				top: -6px;
+	    				height: 20px;
+	    				left: 4px;
+	    				.k-checkbox-label {
+	    					top: 3px;
+	    					left: 12px;
+	    				}
+	    			}
+	    		}
+	    	}
+    	}
+    	.k-grid-header-wrap {
+    		.k-header-column-menu { 
+    			.k-icon {
+    				margin-top : 3px;
+    			}
+    		}
+    		.k-filter-row {
+    			th {
+    				height: 32.7px;
+    				padding: 8px 8px 8px;
+    				.k-filtercell {
+    					height: 32.7px;
+    					.k-operator-hidden {
+    						> k-widget {
+    							height: 32.7px;
+    						}
+    					}
+    					.k-numeric-wrap {
+					    	margin: -1px -1px 0px;
+					    	height:30.7px;
+					    	.k-formatted-value,.k-input {
+					    		position: absolute;
+   	 							top: 0;
+					    	}
+					    	.k-link {
+					    		width:34px;
+					    		height:15px;
+					    	}
+					    	.k-select {
+					    		.k-i-arrow-s {
+					    			margin-top:-1px;
+					    		}
+					    		.k-icon {
+					    			margin-top:3px;
+					    			margin-right:10px;
+					    		}
+					    	}
+					    }
+					    .k-datepicker {
+					    	.k-picker-wrap {
+						    	margin: -1px -1px 0;
+						    	height:30.7px;
+						    	&.k-state-hover {
+					    			border-color: #007cc0;
+					    		}
+						    	.k-i-calendar {
+						    		margin-top:8px;
+						    		margin-left:-10px;
+						    	}
+						    	.k-i-clock {
+						    		margin-top:8px;
+						    		margin-left:-3px;
+						    	}
+						    	.k-input {
+						    		height: 30.7px;
+						    		margin-left:-8px;
+						    	}
+						    }
+					    }
+					    .k-datetimepicker {
+					    	.k-picker-wrap {
+					    		&.k-state-hover {
+					    			border-color: #007cc0;
+					    		}
+					    		margin:-1px -1px 0px -1px;
+								height : 30.7px;
+								.k-input {
+									height:30.7px;
+					    			margin-left: -8px;
+					    			padding-right: 10px;
+								}
+								.k-select {
+									width:60px;
+									.k-i-calendar {
+						    			position: relative;
+    									top: 7px;
+    									margin-left: -3px;
+						    		}
+						    		.k-i-clock {
+						    			position: relative;
+    									top: 7px;
+    									margin-left: 5px;
+						    		}
+								}
+					    	}
+					    }
+						.k-input {
+						 	 height: 30.7px;
+						 	 padding:0;
+						}
+						.k-dropdown {
+							height:32.7px;
+							.k-dropdown-wrap {
+								border: 0 none;
+								height : 30.7px;
+								.k-input {
+									padding-top: 6px;
+									height:24px;
+								}
+							}
+						}
+						.k-button-icon {
+							height : 32.7px;
+							width : 32.7px;
+							margin-right : -7px;
+							.k-i-close {
+								margin-top : -4px;
+								margin-left : -2px;
+							}
+						}	
+    				}
+    			}
+    		}
+    	}
+    }
+    .k-grid-toolbar {
+    	padding-bottom: 6px;
+    	padding-top: 6px;
+    	.k-dropdown {
+    		height: 32px;
+    		height: 32.7px@ie9-10;
+	    	margin-top : -6px;
+			width : 120px;
+			.k-dropdown-wrap {
+				height: 30.7px;
+				.k-input {
+					height : 14.5px;
+					padding-top: 6px;
+					padding-bottom: 4px;
+				}
+			}
+    	}
+    	//chrome
+		@media screen and (-webkit-min-device-pixel-ratio:0) {
+		    .k-dropdown {
+		    	height: 32.7px;
+			}
+		}
+    }
+}
+.k-input {
+	padding:0;
+}
+.k-dropdown-wrap {
+	height:32.7px;
+	.k-input {
+		padding-top: 6px;
+		padding-bottom: 0px;
+	}
+}
+.k-list-container.k-state-border-down, .k-autocomplete.k-state-border-down, .k-dropdown-wrap.k-state-border-down, .k-picker-wrap.k-state-border-down, .k-numeric-wrap.k-state-border-down {
+    border-bottom-width: 1px;
+    padding-bottom: 0;
+}
+#gridExcportDropDownList-list {
+	#gridExcportDropDownList_listbox {
+		.fa {
+			padding-top: 10px;
+		}
+	}
+}
+.k-animation-container {
+	.k-column-menu {
+		.k-link {
+			padding:6px;
+		}
+		.k-menu-group {
+			li {
+				.k-link {
+					padding:6px;
+					.k-checkbox-label {
+						position: relative; 
+						bottom: 2px;
+						margin-left: 3px;
+					}
+					span {
+						margin-left:3px;
+						position: relative; 
+						bottom: 1px;
+					}
+					input[data-field='selectCheckbox'] {
+						position: relative; 
+						top: 1px
+					}
+				}
+			}
+		}
+	}
+}
+.k-autocomplete.k-state-focused > .k-i-close, .k-autocomplete.k-state-hover > .k-i-close, .k-combobox > .k-dropdown-wrap.k-state-focused > .k-i-close, .k-combobox > .k-dropdown-wrap.k-state-hover > .k-i-close {
+    display: none;
+    outline: 0 none;
+}

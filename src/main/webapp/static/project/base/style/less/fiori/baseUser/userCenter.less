@@ -1,0 +1,180 @@
+@ie9-10:~"\9\0";
+@second-color:#872657;
+.base-user-edit-content {
+	&#section-floor-1 {
+		.panel-body {
+			min-height:330px;
+			.readonly-area {
+				margin-top: 28px;
+				width:100%;
+				height:100px;
+				margin-left: 85px;
+				padding-bottom: 20px;
+				border-bottom: 1px solid #eee;
+				margin-bottom:-10px;
+				width: 830px;  
+				.head-img-area {
+					height:100px;
+					width:100px;
+					position: relative; 
+					float: left;
+					#head-img-area-img {
+						height:100px;
+						width:100px;
+					}
+				}
+				.edit-div {
+					width: 100px;
+					float: right;
+					position:relative;
+					color:#666;
+					cursor: pointer;
+					&:hover {
+						color:#009aee;
+					}
+					.fa {
+						margin-right: 3px;
+						position: relative; 
+						top: 1px;
+					}
+				}
+				.contact-area {
+					width:500px;
+					position: relative; 
+					top: 25px;
+					height: 80px;
+					div {
+						.fa {
+							margin-left: 20px;
+							margin-top: 10px;
+							color:#009aee;
+							&.fa-mobile {
+								font-size:16px;
+							}
+							&.fa-envelope {
+								font-size: 11px;
+								margin-top: 13px;
+							}
+						}
+						.text {
+							margin-left:10px;
+							&#userMobilePhone {
+								margin-left:13px;
+							}
+							&#userName {
+								margin-left: 13px;
+							}
+							color:#666;
+						}
+					}
+				}
+			}
+		}
+	}
+	&#section-floor-2 {
+		.panel-body {
+			min-height: 80px;
+		}
+	}
+	&#section-floor-3 {
+		.base-panel {
+			.panel-body {
+				min-height:560px; 
+				.k-edit-field {
+					text-align: left;
+					.k-editable-area {
+						height:380px;
+					}
+				}
+			}
+		}
+	}
+	&#section-floor-4 {
+		.base-panel {
+			.panel-body {
+				min-height: 470px;
+				margin-left: 160px;
+				.uploadDiv {
+				    margin-bottom: 0px;
+				}
+				.base-refresh-div {
+					right: 100px;
+				}
+			}
+			.imgcut-label {
+				position: relative; 
+				width: 100px;
+				top: 60px;
+				left: 120px;
+				z-index: 1000;
+				color: #666;
+			}
+		}
+	}
+	&#section-floor-5 {
+		.panel-body {
+			min-height: 120px;
+		}
+	}
+}
+
+.sidecate {
+    left: 50%;
+    margin-left: -661px;
+    position: absolute;
+    z-index: 500;
+    li {
+    	height: 40px;
+    	background: #444;
+    	width: 95px;
+    	border-bottom: 1px solid #999;
+    	a {
+    		font-size: 13px;
+    		color: #999;
+    		top: 10px;
+    		position: relative;
+    		left: 5px;
+    		.inner-ico {
+    			margin-right: 3px;
+    		}
+    	}
+    }
+}
+.sidecate li a:hover, .sidecate li.current a {
+    color: #fffff0;
+}
+.sidecate li:hover, .sidecate li.current {
+    border-right:5px solid #009aee;
+}
+.sidecate li a:hover .inner-text, .sidecate li.current a .inner-text {
+    display: inline;
+}
+
+
+//因为有些页面在列表中标配就有上传控件，而图像裁剪控件也需要用到上传控件，
+//所以修改图像裁剪控件的上传控件样式会连带修改了标配的上传控件的样式。所以
+//每当使用图像裁剪控件，都需要在裁剪控件区域加上这段css，而不能写在imageCut.less中。
+#section-floor-4 .panel-body {
+	position: relative;
+	.uploadDiv {
+		.k-upload {
+			overflow-y: hidden;
+			.k-dropzone {
+				position: absolute; 
+				left: 67px;
+				top: 65px;
+				height: 320px;
+				width: 480px;
+				z-index: 1100;
+				.k-upload-button {
+					span {
+						font-weight: normal;
+					}
+				}
+			}
+			.k-upload-files {
+				display:none;
+			}	
+		}
+	}
+}

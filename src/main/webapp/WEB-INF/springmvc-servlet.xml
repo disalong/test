@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/context
+      http://www.springframework.org/schema/context/spring-context.xsd 
+      http://www.springframework.org/schema/mvc 
+      http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<description>配置spring MVC</description>
+
+	<mvc:annotation-driven></mvc:annotation-driven>
+
+	<!-- springmvc根据Controller中的@RequestMapping注解去匹配url -->
+	<context:component-scan base-package="com.tingbo.*.controller" />
+	<context:component-scan base-package="com.tingbo.baseWS.**.connector" />
+	<context:component-scan base-package="com.tingbo.baseWS.warper" />
+
+	<!-- 文件上传处理器 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="utf-8"></property>
+		<property name="maxUploadSize" value="5000000000"></property>
+		<property name="maxInMemorySize" value="40960"></property>
+		<property name="uploadTempDir" value="baseUploadTempDir"></property>
+	</bean>
+
+	<!-- 根据Controller方法的回馈跳转视图 -->
+	<bean name="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/WEB-INF/jsp/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+
+	<!-- 切面需要 -->
+	<import resource="classpath*:app-*.xml" />
+
+	<!-- 因为在ws-common-schedule.xml中的bean CommonSchedule中需要注入XxxConnector，所以不能再web.xml中配置它 -->
+	<!-- 必须拿到这里来，因为bean的初始化顺序是先web.xml中的contextConfigLocation，然后到springmvc.xml，而先初始化 -->
+	<!-- 的bean才能注入后初始化的bean中，反过来不行，所以如果都是Bean，a注入b中可以，b注入a却不行，那就是加载的顺序问题。 -->
+	<import resource="classpath*:ws-common-schedule.xml" />
+
+	<!-- 所有服务和Controller层都需要执行的定时任务。它的名字为什么不是app-schedule,因为这样的话，在web.xml中会首先加载app-*.xml，启动了定时任务，但是在定时任务类com.tingbo.base.schedule.ForegroundSchedule中，注入了xxxConnector，而xxxConnector是在后面的springmvc-servlet.xml中加载的，所以在ForegroundSchedule获取的xxxConnector就是null，为了解决这个问题，我在springmvc-servlet.xml底部引入了这个配置文件，相当于调整先后顺序了，但是app-schedule就会被加载两次了，一次是web.xml加载的，一次是springmvc-servlet.xml加载的，前者拿到的xxxConnector还是null，后者则有值，所以为了不让web-xml加载，我只能讲这个配置文件改成base-schedule -->
+	<import resource="classpath*:base-schedule.xml" />
+
+</beans>
+

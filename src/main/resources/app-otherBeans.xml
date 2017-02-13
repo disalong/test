@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<description>
+		实例化没有放置于自动扫描包中的，指定的bean，当前只扫描controller包，为了缩短启动时间
+	</description>
+
+	<bean id="thirdPardLoader" class="com.tingbo.baseCommon.config.ThirdPardLoader"></bean>
+	<bean id="httpUtil" class="com.tingbo.baseUtil.web.HttpUtil"></bean>
+	<bean id="baseException" class="com.tingbo.baseCommon.exception.BaseException"></bean>
+
+</beans>

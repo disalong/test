@@ -1,0 +1,1293 @@
+@main-color:#f2f2f2;
+@second-color:#872657;
+@ie8-10:~"\0";
+@ie9-10:~"\9\0";
+html {
+	font-size: 86%; 
+	font-weight: normal; 
+	font-family: Arial,Helvetica,sans-serif;
+}
+body {
+	margin:0;
+	overflow-x:hidden;
+	font-size: 13.7px
+}
+ol, ul, li {
+    list-style: outside none none;
+}
+.base-fadeIn {
+	display:none;
+}
+.base-head-content {
+	width: 100%; 
+	height:80px;
+	position: relative; 
+	left: 0px; 
+	top: 0px;
+	.base-head-bar {
+		border-bottom:1px solid #ddd;
+		z-index: 1205; 
+		background-color: @main-color; 
+		position: absolute; 
+		width: 100%; 
+		top: 0px;
+		left: 0;
+		height:40px;
+		#loginUrl {
+			display:none;
+			float: right; 
+			margin: 11px 28px 0px 0px;
+			.login-link {
+				font-weight: 800; 
+				text-decoration: none; 
+				color: white; 
+				padding-right: 1em;
+				color:#666;
+				&:hover {
+					color:@second-color;
+				}
+			}
+			.register-link {
+				font-weight: 800; 
+				text-decoration: none; 
+				color: white; 
+				border-left: 1px solid #ddd; 
+				display: inline-block; 
+				padding-left: 1em;
+				color:#666;
+				&:hover {
+					color:@second-color;
+				}
+			}
+		}
+		#userOprationDiv {
+			margin-top:1px;
+			float: right; 
+			display: none;
+			.base-head-pic {
+				border: 1px solid; 
+				border-color: @main-color; 
+				float: right; 
+				height: 28px; 
+				width: 28px; 
+				margin-top: 5px; 
+				border-right: none;
+			}
+			#userOprationUl {
+				height: 28px; 
+				border: 1px solid; 
+				border-color: @main-color; 
+				float: right; 
+				background-color: transparent; 
+				color: white; 
+				margin-right: 20px; 
+				margin-top: 5px; 
+				font-weight: 800;
+				.k-state-hover {
+					span.k-link {
+						color:#fff;
+						background: #009aee;
+					}
+				}
+				span.k-link {
+					color:#333;
+				}
+				.userNameLi {
+					.k-link {
+						line-height: 8px;
+						position: relative;
+						padding: 10px;
+					}
+					#logout-btn-div {
+						.s-user-set-menu {
+						    float: right;
+						    position: relation;
+						    right: 75px;
+						    text-align: left;
+						    top: 26px;
+						    width: 100px;
+						    z-index: 999;
+						    .menu-top {
+							    width: 70px;
+							}
+							div {
+							    box-shadow: 1px 1px 5px #d1d1d1;
+							    position: relative;
+							    font-weight:normal;
+							}
+							a {
+							    -moz-user-select: none;
+							    background-color: #fff;
+							    color: #333;
+							    cursor: pointer;
+							    display: block;
+							    font-size: 12px;
+							    height: 25px;
+							    line-height: 25px;
+							    margin: 0;
+							    padding-left: 8px;
+							    text-align: left;
+							    text-decoration: none;
+							    &:hover {
+							    	background: #009aee;
+							    	color:#fff;
+							    }
+							}
+						}						
+					}
+				}
+			}
+		}
+		#baseLogo {
+			border-color: @main-color;
+			margin:6px 0px 9px 20px;
+			width: 28px;
+		}
+	}
+	#topMenuDiv {
+		display:none;
+		z-index: 1203; 
+		position: absolute; 
+		width: 100%; 
+		top: 40px; 
+		left: 0;
+		height:40px;
+		margin-bottom: 0;
+		border-bottom: 1px solid #ddd;
+		#topMenu {
+			height: 40px;
+			.k-item {
+				.k-link {
+					padding-top: 12px;
+					padding-bottom: 8px;
+				}
+			}
+			>.k-item>.k-link {
+				margin-top: 2px;
+			    padding-bottom: 10px;
+			    padding-top: 10px;
+			}
+		}
+	}
+}
+#s_user_name_menu.s-user-set-menu a, #s_user_setting_menu.s-user-set-menu a {
+    color: #000;
+    text-shadow: none;
+}
+.k-state-active, .k-state-active:hover, .k-active-filter, .k-tabstrip .k-state-active {
+    background-color: #fff;
+    border-color: #c9c9c9;
+}
+/**
+ * div中的文字超过div长度字段隐藏，并出现省略号
+ */
+.base-word-overflow {
+ 	overflow:hidden;
+ 	text-overflow:ellipsis;
+ 	white-space:nowrap;
+}
+/**
+*kendo ToolTip的样式美化
+*/
+.k-tooltip-content {
+	word-break:break-all;
+	word-warp:break-word;
+	width: 270px;
+	margin: 7px;
+	font-family:"微软雅黑","黑体","宋体";
+    font-size:12px;
+}
+/**
+为页面做loading遮罩，将div放到需要这招的元素的第一个子元素中，最后加载完成后移除遮罩元素即可
+<div class="k-loading-image html-loading-image"></div>
+.html-loading-image {
+	display: block;
+	z-index: 10999; 
+	opacity: 0.1;
+	background-color: #000
+}
+$(".html-loading-image").remove();
+*/
+.k-content {
+	.k-edit-label {
+		color:#333;
+		padding:0;
+		margin-top: 30px;
+		&:last-child {
+			padding-bottom: 32px;
+		}
+		label {
+			position: relative;
+			top: 7px;
+		}
+	}
+	.k-input {
+		height:32.7px;
+	}
+	button {
+		height:32.7px;
+		width:32.7px;
+	}
+	&#logout-btn-div {
+		button {
+			height: auto;
+		    width: auto;
+		}
+	}
+	.base-checkbox-1,.base-checkbox-2 {
+		height: 50px;
+		width:240px;
+		float: left;
+		position: relative;
+		.k-edit-label {
+			position:absolute; 
+			right: 50px;
+			margin-top:22px;
+		}
+		.k-edit-field {
+			margin-bottom: 0px;
+			margin-top: 31px;
+			width: 20px;
+			position: absolute;
+    		right: 7px;
+		}
+	}
+	.k-edit-field {
+		margin-top: 28px;
+		margin-left: -14px;
+		padding: 0;
+		img {
+			height:32.7px;
+			width:32.7px;
+		}
+		.edit-field-btn {
+			position:absolute;
+			button {
+				margin-left:5px;
+			}
+		}
+		&:last-child {
+			padding-bottom: 32px;
+		}
+		> .k-widget {
+			margin-left: -14px;
+			&.additional-widget {
+				margin-left: 0px;
+			}
+		}
+		.k-input {
+			height:31.7px;
+		}
+		> .k-input {
+			padding: 0;
+			margin-left: -14px;
+			height:32.7px;
+		}
+		> button {
+			margin-left: -14px;
+		}
+		button {
+			border-color: #ddd;
+		}
+		.k-dropdown-wrap {
+			height: 29.7px;
+			border: 0;
+			.k-input {
+				padding: 0;
+				height: 25px;
+				top:6px;
+				position: relative;
+			}
+			.k-select {
+				.k-icon {
+					position: relative;
+    				top: 7px;
+				}
+			}
+		}
+		.k-multiselect {
+			min-height: 30.7px;
+			.k-multiselect-wrap {
+				min-height: 30.7px;
+				.k-input {
+					height: 26px; 
+					padding: 0px; 
+					position: relative; 
+					top: 3px; 
+					margin: 0px;
+				}
+			}
+		}
+		.k-numerictextbox {
+			height:31.7px;
+			.k-numeric-wrap {
+				margin-top : -2px;
+				margin-left : -1px;
+				margin-right : -1px;
+				height : 30.7px;
+				border: 1px solid #ddd;
+				&.k-state-active, &:hover,&:focus {
+	    			border-color: #007cc0;
+	    			transition: all 0.3s ease 0s;
+	    		}
+				.k-link {
+					height: 15px;
+		    		width: 35px;
+		    		.k-icon {
+		    			position: relative;
+	    				top: 10.7px;
+		    		}
+				}
+				input {
+					height: 30.7px;
+		    		padding: 0;
+				}
+				.k-input.k-textbox {
+					&:hover, &:focus {
+						border:0px;
+					}
+				}
+				.k-select {
+					border-color:#ddd;
+				}
+			}
+		}
+		.k-datetimepicker {
+			input {
+				height: 30.7px;
+	    		padding: 0;
+			}
+	    	.k-picker-wrap {
+	    		padding-right:60px;
+	    		margin:-1px -1px 0px -1px;
+				height : 30.7px;
+				&.k-state-active, &.k-state-hover {
+	    			border-color: #007cc0;
+	    			transition: all 0.3s ease 0s;
+	    		}
+				.k-input {
+					height:30.7px;
+	    			padding-right: 10px;
+				}
+				.k-input.k-textbox {
+					&:hover, &:focus {
+						border:0px;
+					}
+				}
+				.k-select {
+					width:60px;
+					.k-i-calendar {
+		    			position: relative;
+						top: 7.7px;
+		    		}
+		    		.k-i-clock {
+		    			position: relative;
+						top: 7.7px;
+						margin-left: 5px;
+		    		}
+		    		.k-icon {
+		    			height:17px;
+		    		}
+				}
+	    	}
+	    }
+	}
+}
+.k-tabstrip > .k-content, .k-panelbar .k-tabstrip > .k-content {
+    padding: 0;
+}
+.k-textbox {
+	border: 1px solid #ddd;
+	&.k-state-active, &:hover, &:focus {
+		border: 1px solid #007cc0;
+		transition: all 0.3s ease 0s;
+	}
+}
+.k-multiselect.k-header.k-state-hover {
+    border-color: #007cc0;
+    transition: all 0.3s ease 0s;
+}
+.k-input.base-baseWidget {
+	margin-right: 5px;
+}
+input.k-textbox, textarea.k-textbox, .k-multiselect.k-header {
+    border-color: #ddd;
+}
+.base-slidVrify-container, .base-slidVrify-container-fang {
+	height: 32.7px; 
+	position: relative; 
+	right: 14px; 
+	background: #f2f2f2;
+	cursor: move;
+	bottom: 48px;
+}
+.base-slidVrify-container-fang {
+	bottom: 0px;
+	right: 0px; 
+}
+.base-slidVrify-item {
+	height: 30.7px;
+	width: 45px;
+	background: #fff;
+	border: 1px solid #ddd;	
+	cursor: move;
+	top:1px@ie9-10;
+	&.move-right {
+		 float: right;
+		 position: relative;
+		 z-index: 100;
+	}
+	.fa {
+		height: 20px;
+		width: 20px;
+		position: relative; 
+		top: 6px;
+		left: 19px;
+		font-size: 19px;
+		color: #737383;
+		&.fa-spinner {
+			font-size: 20px;
+			left:13px;
+		}
+		&.fa-check-circle {
+			font-size: 20px;
+			left:15px;
+			color:#76c61d;
+		}
+		&.fa-times-circle {
+			font-size: 20px;
+			left:15px;
+			color:#ff7f50;
+		}
+		&.fa-warning {
+			font-size: 20px;
+			left:13px;
+			color:#ff7f50;
+		}
+	}
+}
+.base-green-bar {
+	position: relative; 
+	right: 14px;
+	background: #7ac23c;
+	z-index: 9; 
+	width: 0px; 
+	top:2px;
+	top:-1px@ie9-10;
+	height: 32.7px;
+	cursor: move;
+	&.base-invalid {
+		background: #ff7f50;
+	}
+	&.base-webconnfail {
+		background: #ffff00;
+	}
+}
+//chrome
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    .base-green-bar {
+    	top:-1px;
+    	height: 31.7px;
+	}
+}
+/*ie11 css hack*/
+@media all and (-ms-high-contrast:none) {
+    .base-green-bar {
+    	top:-1px;
+	}
+} 
+.k-edit-field.base-verify-code-area, .k-edit-field.base-verify-code-area-fang {
+	text-align: left!important;
+	height: 32.7px;
+	position: relative;
+	top: 1px;
+	margin-top: 26px;
+	margin-top: 28px@ie9-10;
+	height: 32.7px;
+	.verify-op-text, .base-time {
+		cursor: move;
+		z-index: 100;
+		position: relative;
+		left: 100px;
+		bottom: 23px;
+		font-size: 12px;
+		color: #666;
+		&.verify-finish {
+			color:#fff;
+		}
+		.base-refresh {
+			text-decoration:none;
+			color:#009aee;
+			margin-right:3px;
+		}
+		&.verify-finish-connfail {
+			color: #666;
+		}
+	}
+	.base-time {
+		left: 160px;
+	}
+}
+.k-edit-field.base-verify-code-area-fang {
+	display: none;
+	position: absolute!important;
+	margin: 0!important;
+	top: 0;
+	z-index: 1000;
+	.fa {
+		position: relative; 
+		top: 7px;
+		left: 160px;
+		font-size: 20px;
+		color: #666;
+	}
+}
+.base-login-content .base-login-context .k-content .k-edit-field.base-verify-code-area-fang {
+    position: absolute!important;
+    left:0px;
+}
+.k-edit-field.base-verify-code-area {
+	display:none;
+	text-align: left!important;
+	&.base-no-visi {
+		visibility: hidden;
+	}
+}
+.k-invalid-msg {
+	padding:3px;
+	.base-vilid-msg {
+		font-size: 12px;
+		margin-left: 3px;
+	}
+}
+
+
+/**
+*列表搜索行的dropdownlist下拉列表出现图标显示不正确，这里修正。
+*也就是初始化状态没有正确显示下拉箭头。
+*/
+.k-dropdown-wrap .k-i-arrow-s {
+	background-position : 0 -32px
+}
+.k-state-border-down .k-i-arrow-s {
+	background-position : none
+}
+/**
+*列表搜索行的dataTimePicker出现图标显示不正确，这里修正。
+*也就是日期选择视图中，最上边切换月份的箭头位置太靠上。
+*/
+.k-calendar .k-i-arrow-w {
+	margin-top: 10px
+}
+.k-calendar .k-i-arrow-e {
+	margin-top: 10px
+}
+/**
+*列表页码栏的输入数字跳转页码的输入框被kendo限死了，无法用css()方法修改，所以只能干掉<html>标签中起作用的class
+*然后再添加css属性的方式改变样式。
+*/
+.k-pager-input .k-textbox {
+	height: 30px;
+}
+/*
+*调节列表下方的翻页按钮位置
+*/
+.k-floatwrap .k-pager-nav{
+	padding-top: 8px;
+	height: 25px
+}
+/**
+ * kendo的select下拉框的右边的倒三角需要调整至中间
+ */
+.k-dropdown-wrap .k-select {
+	 padding-top: 8px;
+}
+/**
+ * 输入框出现校验提示时，number和date类型的校验的提示内容显示位置偏下，调整一下。
+ */
+input[data-role='datepicker'] + div.k-tooltip-validation {
+	margin-top: -2px
+}
+input[data-role='numerictextbox'] + div.k-tooltip-validation {
+	margin-top: -2px
+}
+input[data-role='datetimepicker'] + div.k-tooltip-validation {
+	margin-top: -3px
+}
+input[data-role='dropdownlist'] + div.k-tooltip-validation {
+	margin-top: 2px
+}
+/**
+ * 鼠标移动到表格行中有强调性的遮映
+ * 不要尝试将表格的行边框变色来替代，为table的tr加边框的方式是：
+ * border-style: solid;border-width: 2px;border-color: red; 
+ * 就算加上了边框，如果设置边框宽度为1px，是没有效果了，因为会强制使用
+ * kendo自身的边框，如果设置为2px，则行高宽会变形，看着表格会动的样子，烦，
+ * 所以放弃。淘宝曾经使用过一种方式是在tr上方浮动一个透明的div，实际上是一个透明的图片，
+ * 但是这种方式要求长宽高是固定的，并不能用于表格，因为表格的长宽不定。
+ */
+.k-grid tbody tr:not(.k-state-selected):not(.k-filter-row):hover {
+	background-color: rgba(187, 187, 198, 0.2);
+}
+.k-edit-form-container {
+	.k-multiselect-wrap {
+		.k-button {
+			margin:3px 2px 3px 3px;
+			.k-select{
+				margin-top: 6px;
+			}
+		}
+	}
+	.base-edit-win-toolbar-background {
+		margin-bottom: 13px;
+		background-color: #f2f2f2;
+		.k-button {
+			height:32.7px;
+			.text {
+				margin-top: -3px;
+			}
+		}
+	}
+}
+/**
+*调整上传输入弹出框的样式
+*/
+.file-icon {
+	display: inline-block;
+	float: left;
+	margin-left: -5px;
+	margin-top: 3px;
+}
+li.k-file .file-wrapper .k-upload-action {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin-right: 10px;
+}
+li.k-file div.file-wrapper {
+	position: relative;
+	height: 17px;
+}
+.k-upload {
+	background-color: white;
+	border-width: 0px;
+	height: 63px;
+	border-width: 0px;
+}
+.k-upload-files .k-button,.k-upload-status-total .k-icon {
+	margin-top: 1px;
+}
+.k-notification {
+	right:15px;
+	border:0px;
+	.Message {
+		background-color: #0074d9;
+	    color: #fff;
+	    display: table;
+	    position: relative;
+	    transition: all 0.2s ease 0s;
+	    width: 300px;
+	    &:hover .Message-close {
+		    opacity: 1;
+		}
+		.Message-close {
+		    background-color: rgba(0, 0, 0, 0.3);
+		    border: medium none;
+		    color: #fff;
+		    cursor: pointer;
+		    opacity: 0;
+		    outline: medium none;
+		    position: absolute;
+		    right: 5px;
+		    top: 5px;
+		    padding: 0;
+		    font-size: 14px;
+		    width: 16px;
+		    height: 16px;
+		    &:hover {
+		    	background-color:rgba(0,0,0,0.5);
+		    }
+		    &.js-messageCloseAll {
+		    	left:259px;
+		    	width: 16px;
+		    	height: 16px;
+		    	.fa-stack {
+		    		width: 16px;
+		    		height: 16px;
+		    		.fa-copy {
+		    			font-size: 11px;
+		    			padding: 0px;
+		    			height: 16px;
+		    			width: 16px;
+		    			top: 3px;
+		    			left: -2px;
+		    		}
+		    		.fa-times {
+		    			font-size: 10px;
+		    			padding: 0px;
+		    			height: 14px;
+		    			width: 14px;
+		    			top: -10px;
+		    			left: 4px;
+		    		}
+		    	}
+		    }
+		    &.js-messageClosePin {
+		    	left: 239px;
+		    	&.base-pin {
+			    	color: #872657;
+			    	opacity: 1;
+			    	background-color: #ddd;
+			    }
+		    }
+		    &.js-messageClose {
+		    	font-size: 15px;
+		    }
+		}
+		.Message-icon {
+		    background-color: rgba(0, 0, 0, 0.25);
+		    display: table-cell;
+		    text-align: center;
+		    vertical-align: middle;
+		    width: 60px;
+		    > i {
+			    font-size: 20px;
+			    width: 20px;
+			}
+		}
+		&.Message--orange {
+		    background-color: #f39c12;
+		}
+		&.Message--red {
+		    background-color: #ff4136;
+		}
+		&.Message--green {
+		    background-color: #2ecc40;
+		}
+		.Message-body {
+			max-width: 210px;
+		    display: table-cell;
+		    vertical-align: middle;
+		    padding: 0;
+		    height: 70px;
+		    .base-title {
+		    	position: relative; 
+		    	width: 220px;
+		    	float: left;
+		    	font-weight: 900;
+		    	font-size: 15px;
+		    	padding: 15px 10px 10px 10px;
+		    }
+		    .base-msg {
+		    	position: relative;
+		    	width: 220px;
+		    	float: left;
+		    	word-wrap:break-word;
+		    	padding: 0px 10px 15px 10px;
+		    	font-size: 12px;
+		    }
+		}
+	}
+}
+
+/**
+*弹出编辑框的高度，是否出滚动条等设置。
+*/
+.base-edit-win-content {
+	max-height: 469px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	margin-bottom: -14px;
+}
+/**
+* 调整弹出框中的树状控件
+*/
+.base-edit-win-content .k-treeview-lines{
+	padding-left: 10px
+}
+.base-edit-win-content .k-checkbox{
+	padding-top: 7px;
+	padding-left: 10px;
+}
+.base-main-grid {
+	display:none;
+}
+//出现的情况是，kendo的checkbox有input和label组成，如果checkbox加入校验，
+//那么校验不通过，在input后面会插入提示元素，那么label的效果就不起作用了，
+//因为label的一些效果必须是label前面是input才行，现在中间插入一个元素了，
+//所以就得覆盖label的一些css属性，让它在中间插入提示元素的情况下也生效。
+//这样的话kando的checkbox就能像其他input组件一样进行校验了。别以为checkbox
+//不需要校验，比如说阅读网站协议的时候，必须要勾选checkbox才能提交的，所以
+//需要kendo_required=true。
+.k-checkbox:checked + .k-invalid-msg + .k-checkbox-label::before {
+    background-color: #fff;
+    border-color: #bfbfbf;
+    color: #007cc0;
+}
+.k-checkbox:checked + .k-invalid-msg + .k-checkbox-label::before {
+    content: "✔";
+}
+.k-checkbox-label:hover::before, .k-checkbox:checked + .k-invalid-msg + .k-checkbox-label:hover::before {
+    border-color: #007cc0;
+    transition: all 0.3s ease 0s;
+    box-shadow: none;
+}
+.k-checkbox:focus + .k-invalid-msg + .k-checkbox-label::before {
+    border-color: #007cc0;
+    transition: all 0.3s ease 0s;
+    box-shadow: none;
+}
+.uploadDiv {
+	margin-bottom: -15px;
+	.k-upload {
+		overflow-y: scroll;
+		height: 470px;
+		.k-upload-files {
+			position: absolute;
+			z-index: 1000;
+			width: 100%;
+			top: 60px;
+			border-color:#eee;
+			li.k-file {
+				border-color:#eee;
+			}
+		}
+		.k-dropzone {
+			padding: 0;
+			height: 470px;
+			&.k-dropzone-active {
+				.k-upload-status {
+					display:none;
+				}
+			}
+			.k-upload-button span {
+				font-weight: bold;
+				color: #7d7d7d;
+			}
+			.k-upload-status {
+				top: 14px;
+				right: 8px;
+				.k-icon {
+					position: relative;
+					top: -1px;
+				}
+			}
+			.k-button {
+				position: relative; 
+				top: 10px;
+				left: 10px;
+				border-color: #ddd;
+			}
+			em {
+				position: relative; 
+				left: 20px;
+				top: 11px;
+			}
+		}
+		.k-file {
+			padding: 0;
+			.file-wrapper {
+				height: 26px;
+				.file-heading {
+					float: left;
+				    height: 26px;
+				    margin: 0;
+				    padding: 0;
+				    position: absolute;
+				    width:85%;
+				    line-height: 1.96;
+				}
+				.file-icon {
+					width: 26px;
+					height: 26px;
+					margin: 0;
+					text-align: center;
+					position: relative;
+					top: 7px;
+					color:#666;
+				}
+				.k-upload-action {
+					&.k-button {
+						height: 26px;
+					    position: absolute;
+					    right: 0;
+					    top:0;
+					    margin:0;
+					}
+				}
+			}
+		}
+	}
+}
+.k-dropzone-hovered {
+	background-color: rgba(187, 187, 198, 0.2)
+}
+fieldset {
+	border-color: #ddd;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 20px 0;
+    padding: 20px;
+    color: #7d7d7d;
+    font-weight: 700;
+    legend {
+	    margin-bottom: -10px;
+	    position: relative;
+    	top: -5px;
+	}
+}
+a {
+	&:link, &:visited, &:active {
+		text-decoration:none;
+	}
+}
+.k-editor-widget {
+	.k-editor-toolbar-wrap {
+		.k-editor-toolbar {
+			.k-tool-group {
+				position: relative; 
+				top: 1px;
+				.k-tool {
+					height: 33px;
+					width: 33px;
+					.k-tool-icon {
+						position: relative; 
+						top: 5px;
+						left: 1px;
+					}
+				}
+				.k-dropdown-wrap {
+					border:1px solid #bfbfbf;
+					height: 31px;
+					padding:0;
+					&.k-state-active, &:hover {
+						border-color: #007cc0;
+						transition: all 0.3s ease 0s;
+					}
+					.k-select {
+						padding-top:1px;
+					}
+					span.k-input {
+						top:6px;
+					}
+					input.k-input {
+						top:3px;
+					}
+				}
+				.k-picker-wrap {
+					height: 31px;
+					.k-select {
+						.k-icon {
+							position: relative; 
+							top: 8px;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+.k-editor-dialog {
+	padding: 0!important;
+	height: 307px!important;
+	overflow-x: hidden;
+	.k-edit-buttons {
+		background-color: #f2f2f2;
+		border:1px solid #bfbfbf!important;
+		.k-button {
+			width: 60px;
+			padding: 0;
+		}
+	}
+	.k-checkbox-label {
+		margin-bottom: 13px;
+	}
+	.k-editor-textarea {
+		height: 240px;
+		padding: 0;
+		margin: 0;
+	}
+	.k-edit-field {
+		#k-editor-link-target {
+			+ .k-checkbox-label {
+				margin-left: -13px;
+				padding-bottom: 46px;
+			}
+		}
+		#k-editor-file-title {
+			margin-bottom: 121px;
+		}
+		#k-editor-file-title {
+			margin-bottom: 121px;
+		}
+	}
+	&.k-editor-table-wizard-dialog {
+		height: 500px!important;
+		min-width: 425px!important;
+		.k-tabstrip-wrapper {
+			height: 431px;
+			#k-table-wizard-tabs {
+				height: 451px;
+				overflow-y: scroll;
+				padding: 0;
+				margin: 0;
+				#k-table-wizard-tabs-1 {
+					min-height: 790px;
+				}
+				#k-table-wizard-tabs-2 {
+					min-height:740px;
+				}
+				#k-table-wizard-tabs-3 {
+					min-height: 410px;
+					height:410px;
+				}
+				.k-tabstrip-items {
+					height: 29px;
+					padding-top: 10px;
+				}
+				.k-content {
+					padding: 0px;
+					.k-edit-field {
+						.k-checkbox-label {
+							margin-left: -8px;
+						}
+						> .k-input {
+							margin-left: -9px;
+						}
+						span:first-child.k-dropdown {
+							margin-left: -9px;
+							width: 213px;
+							.k-dropdown-wrap {
+								.k-input {
+									top:4px;
+								}
+							}
+						}
+						.k-widget {
+							> span {
+								margin-left: 5px;
+							}
+							&.k-colorpicker {
+								margin-left: -9px;
+								.k-picker-wrap {
+									border-color:#ddd;
+									&.k-state-active, &:hover {
+										border-color: #007cc0;
+		    							transition: all 0.3s ease 0s;
+									}
+									height: 31px;
+									margin: 0;
+									.k-selected-color {
+										padding:0;
+									}
+									.k-select {
+										border-color:#ddd;
+										.k-icon {
+											position: relative; 
+											top: 8px;
+										}
+									}
+								}
+							}
+							&.k-dropdown {
+								border:1px solid #ddd;
+								margin-left: -8px;
+								&.k-state-active, &:hover {
+									border-color: #007cc0;
+	    							transition: all 0.3s ease 0s;
+								}
+								.k-dropdown-wrap {
+									margin: 0;
+									.k-input {
+										top:0px;
+										.k-font-icon {
+											position: relative; 
+											top: 5px; 
+										}
+									}
+									.k-select {
+										padding-top: 0px;
+									}
+								}
+							}
+							&.k-numerictextbox {
+								.k-numeric-wrap {
+									.k-select { 
+										.k-icon {
+											top:3px;
+										}
+									}
+								}
+								+ .k-dropdown {
+									position: relative; 
+									left: 10px;
+									margin: 0;
+									border:1px solid #ddd;
+									top: -2px;
+									height: 29.7px;
+									&.k-state-active, &:hover {
+										border-color: #007cc0;
+		    							transition: all 0.3s ease 0s;
+									}
+									.k-dropdown-wrap {
+										margin: 0;
+										.k-input {
+											top:3px;
+										}
+										.k-select {
+											padding-top: 0px;
+										}
+									}
+								}
+								+ .k-colorpicker {
+									position: relative; 
+									top: -2px;
+									left: 15px;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+.base-user-edit-content {
+	&#section-floor-1 {
+		margin-top:70px;
+	}
+	margin-top: 20px;
+	.base-panel {
+		margin: 0 auto;
+		width: 1000px;
+		border: 1px solid #ababab;
+		border-top: 5px solid #ababab;
+		box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.08), 0 3px 6px rgba(0, 0, 0, 0.08);
+		&:hover {
+			border: 1px solid #009aee;
+			border-top: 5px solid #009aee;
+			transition: all 0.5s ease 0s;
+		}
+		.panel-head {
+			height: 40px;
+			background:#f2f2f2;
+			.title {
+				font-size: 16px;
+				font-weight: 700;
+				top: 9px;
+				position: relative; 
+				left: 15px;
+				color: #996515;
+			}
+			.fa {
+				font-size: 17px;
+				top: 8px;
+				position: relative;
+				left: 10px;
+				color:#996515;
+				&.fa-graduation-cap,&.fa-user-circle,&.fa-lock {
+					top:10px;
+				}
+			}
+		}
+		.panel-body {
+			.text-panel {
+				margin-top: 20px;
+				color: #333;
+				.label-div {
+					float: left;
+					width: 180px;
+					text-align: right;
+				}
+				.text-div {
+					margin-left:200px;
+					width: 720px;
+					min-height: 20px;
+				}
+			}
+			.k-edit-label {
+				width: 160px;
+				position: relative;
+				float: left;
+				margin-left:10px;
+				text-align: right;
+				clear: none;
+			}
+			.k-edit-field {
+				width: 260px;
+				position: relative;
+				float: left;
+				margin-left:40px; 
+				margin-right: -20px;
+				text-align: right;
+			}
+		}
+	}
+}
+.sidecate {
+    left: 50%;
+    margin-left: -661px;
+    position: absolute;
+    z-index: 500;
+    li {
+    	height: 40px;
+    	background: #444;
+    	width: 95px;
+    	border-bottom: 1px solid #999;
+    	a {
+    		font-size: 13px;
+    		color: #999;
+    		top: 10px;
+    		position: relative;
+    		left: 5px;
+    		.inner-ico {
+    			margin-right: 3px;
+    		}
+    	}
+    }
+}
+.sidecate li a:hover, .sidecate li.current a {
+    color: #fffff0;
+}
+.sidecate li:hover, .sidecate li.current {
+    border-right:5px solid #009aee;
+}
+.sidecate li a:hover .inner-text, .sidecate li.current a .inner-text {
+    display: inline;
+}
+//已经disabled的checkbox鼠标显示禁止点击
+.k-checkbox:disabled + .k-checkbox-label::before, .k-checkbox:checked:disabled + .k-checkbox-label::before, .k-checkbox:checked:disabled + .k-checkbox-label:active::before, .k-checkbox:checked:disabled + .k-checkbox-label:hover::before {
+    cursor: not-allowed;
+}
+.fang-reonly {
+	background-color:#e5e5e5!important;
+	cursor: not-allowed;
+}
+button {
+	i {
+		margin-top: 2px; 
+	}
+}
+.Message {
+	button {
+		i {
+			margin-top: 0px; 
+		}
+	}
+}
+.k-primary, .k-overflow-container .k-primary {
+    background-color: #009aee;
+    background-image: none;
+    background-position: 50% 50%;
+    border-color: #0089d4;
+    box-shadow: none;
+    color: #fff;
+}
+.k-edit-label {
+	label {
+		color: #666;
+	}
+}
+.k-state-disabled {
+	cursor: not-allowed!important;
+}

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+
+	<!-- 执行顺序，先Filter再Servlet，虽然是这样，但是Filter会穿过Servlet再回到Filter中，意思是，不是在Filter中做一个来回再到Servlet中做一个来回， 
+		而是Filter和Servlet全部做成一个队列，然后全部一个来回。这样我们的SessionFilter就起作用了，在这个大来回中，任何放到session中的内容都会被保存到数据库中， 
+		所以这个session跨越的范围会直到Controller层。 -->
+
+	<!-- spring配置加载监听器，web项目启动，加载spring配置文件 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<!-- 指定spring bean配置文件的读取路径 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			classpath*:app-*.xml,
+			classpath*:ws-common-bgConfig.xml
+			<!-- 这里可以指定jar包中指定的某个配置文件，从而进行实例化，适合当你想将<bean>配置在其他jar包中的时候 -->
+		</param-value>
+	</context-param>
+
+	<!-- 将session进行持久化，用于分布式系统，放置于所有Filter最前面 -->
+	<filter>
+		<display-name>SessionFilter</display-name>
+		<filter-name>SessionFilter</filter-name>
+		<filter-class>com.tingbo.baseCommon.filter.SessionFilter</filter-class>
+		<init-param>
+			<!-- 直接跳过不关心session的url，因为有些url比如静态请求js文件，图片文件，这些url是不经过controller的，根本不用考虑session的使用。支持正则，用“|”隔开，https://localhost:567之后的内容为填写路径，正则的转义字符写法与javaScript的写法一样，如\d而不是\\d -->
+			<param-name>skipUrl</param-name>
+			<param-value>/static/[\s\S]*</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>SessionFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- 防止相同用戶（相同sessionId，IP等）在指定時間週期內訪問過多，以防止惡意攻擊 -->
+	<filter>
+		<display-name>RequestToken</display-name>
+		<filter-name>RequestToken</filter-name>
+		<filter-class>com.tingbo.baseCommon.filter.RequestToken</filter-class>
+		<init-param>
+			<!-- 防止相同IP用戶在duringTime內訪問次數超過執行數量 -->
+			<param-name>sameIpMaxUrl</param-name>
+			<param-value>250</param-value>
+		</init-param>
+		<init-param>
+			<!-- 防止相同sessionId用戶在duringTime內訪問次數超過執行數量 -->
+			<param-name>sameSessionIdMaxUrl</param-name>
+			<param-value>250</param-value>
+		</init-param>
+		<init-param>
+			<!-- 指定時間週期大小，在此時間週期內，同一个用户的访问次数不能超过以上ip，sessionId等的指定数量，单位为毫秒 -->
+			<param-name>duringTime</param-name>
+			<param-value>2000</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>RequestToken</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- 防止重复提交，同时防止同一个客户提交的写数据库请求过多 -->
+	<filter>
+		<display-name>SaveToken</display-name>
+		<filter-name>SaveToken</filter-name>
+		<filter-class>com.tingbo.baseCommon.filter.SaveToken</filter-class>
+		<init-param>
+			<!-- 同一个客户（同一session）同时能提交的不相同路径的写数据库请求的最大数量（超过这个数量即报错），加这个参数的目的是因为使用了SaveToken，它会将写数据库的路径存放于session中，如果存储量大或受攻击，内存会爆掉 -->
+			<param-name>maxSaveUrl</param-name>
+			<param-value>30</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>SaveToken</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- 用于请求的权限验证 -->
+	<filter>
+		<display-name>LoginToken</display-name>
+		<filter-name>LoginToken</filter-name>
+		<filter-class>com.tingbo.baseCommon.filter.LoginToken</filter-class>
+		<init-param>
+			<!-- 直接跳过不作权限验证的url，支持正则，用“|”隔开，https://localhost:567之后的内容为填写路径，正则的转义字符写法与javaScript的写法一样，如\d而不是\\d -->
+			<param-name>skipUrl</param-name>
+			<param-value>/baseUserWS/loginUserEmailCheck|/baseUploadWS/findAndCutImage|/noPermission|/|/login|/baseUserWS/UserReadService/login|/static/[\s\S]*|/baseExceptionPersistenceWS/ExceptionPersistenceWriteService/save|/baseSessionWS/SessionWriteService/findOne|/baseSessionWS/SessionWriteService/save|/baseUserWS/PermissionReadService/findByPermissionUrl|.+/commonWebService\?wsdl</param-value>
+		</init-param>
+		<init-param>
+			<!-- 权限不通过时跳转到无权限操作错误提示页面路径。https://localhost:567之后的内容为填写路径，如/noPermission，这个页面写死提示“无权限操作xxxx”，旁边是登录表单。 -->
+			<param-name>noPermissionUrl</param-name>
+			<param-value>/login</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>LoginToken</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- 配置spring的字符编码过滤器 ，注意url-patten是/*，不是/ -->
+	<filter>
+		<filter-name>CharacterFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>CharacterFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- 对浏览器的response数据进行gzip压缩，返回浏览器，浏览器会自动根据头部信息将数据解压后显示，从而提高网页的网络传输速度 -->
+	<filter>
+		<display-name>GZipFilter</display-name>
+		<filter-name>GZipFilter</filter-name>
+		<filter-class>com.tingbo.baseCommon.filter.GZipFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>GZipFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- ==============Servlet↓============== -->
+
+	<!-- 匹配静态资源文件，代替<mvc:resources>去匹配，因为它的优先级比spring的url mapping都高 -->
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>/static/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- 加载springmvc调度器 -->
+	<servlet>
+		<servlet-name>springmvc</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>springmvc</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+	<!-- 用户请求返回错误码处理 -->
+	<error-page>
+		<error-code>500</error-code>
+		<location>/WEB-INF/jsp/project/base/error/500.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/WEB-INF/jsp/project/base/error/404.jsp</location>
+	</error-page>
+
+</web-app>

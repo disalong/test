@@ -1,0 +1,131 @@
+//因为有些页面在列表中标配就有上传控件，而图像裁剪控件也需要用到上传控件，
+//所以修改图像裁剪控件的上传控件样式会连带修改了标配的上传控件的样式。所以
+//每当使用图像裁剪控件，都需要在裁剪控件区域加上这段css，而不能写在imageCut.less中。
+/*#user_edit_win5 {
+	position: relative;
+	.uploadDiv {
+		.k-upload {
+			overflow-y: hidden;
+			.k-dropzone {
+				position: absolute; 
+				left: 67px;
+				top: 65px;
+				height: 320px;
+				width: 480px;
+				z-index: 1100;
+				.k-upload-button {
+					span {
+						font-weight: normal;
+					}
+				}
+			}
+			.k-upload-files {
+				display:none;
+			}	
+		}
+	}
+}*/
+
+
+@second-color:#872657;
+@ie9-10:~"\9\0";
+.div-border-style {
+	background-color: white;
+	border-radius: 6px;
+	box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+	display: block;
+	padding: 6px;
+	top: 0;
+	z-index: 2000;
+	height: 100px;
+	width: 100px;
+}
+//系统当前规定截图的基底尺寸为宽480，高320.
+@img-cut-width:480px;
+@img-cut-height:320px;
+.headImg-cut-div {
+	.div-border-style;
+	box-shadow:none; 
+	top: 133px;
+	left: 15px;
+	width: @img-cut-width;
+	height: @img-cut-height;
+	z-index: 1000;
+	.preview-pane {
+		.div-border-style;
+	    left: 500px;
+	    margin-top: 20px;
+	    .preview-container {
+		    overflow: hidden;
+		} 
+	}
+	.fa-pulse {
+		position: absolute; 
+		margin-left: 48%;
+		margin-top: 33%;
+		font-size: 20px;
+		display:none;
+	}
+	img {
+		visibility:hidden;
+	}
+	.jcrop-holder {
+		img {
+			display:block;
+		}
+	}
+}
+.headImg-cut-div-fs {
+	position: absolute; 
+	top: 30px;
+	margin: 0;
+	left: 40px;
+	.preview-pane-fs {
+		padding-top: 0;
+		position: absolute;
+		left: 550px;
+		top: -9px;
+		top:-1px@ie9-10;
+		margin:0;
+	}
+	//chrome
+	@media screen and (-webkit-min-device-pixel-ratio:0) {
+	    .preview-pane-fs {
+			top: -1px;
+		}
+	}
+}
+.headImg-cut-warm {
+	position: absolute;
+	width: 100%;
+	top:425px;
+	height: 20px;
+	.warm-text {
+		position: absolute; 
+		left: 60px;
+		color: #666;
+		top:-1px;
+	}
+	.fa-exclamation-circle {
+		position: absolute; 
+		top: 3px;
+		left: 40px;
+		color: #ff4136;
+	}
+	.base-refresh-div {
+		width: 60px;
+		height: 20px;
+		position: absolute;
+		right: 220px;
+		text-align: center;
+		top: -1px;
+		color: #009aee; 
+		cursor: pointer;
+		.fa-refresh {
+			margin-left: 5px
+		}
+		&:hover {
+			color: @second-color;
+		}
+	}
+}

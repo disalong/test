@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.2.xsd"
+	default-lazy-init="true">
+
+	<description>
+	所有服务和Controller层都需要执行的定时任务。它的名字为什么不是app-schedule,因为这样的话，在web.xml中会首先加载app-*.xml，启动了定时任务，但是在定时任务类com.tingbo.base.schedule.ForegroundSchedule中，注入了xxxConnector，而xxxConnector是在后面的springmvc-servlet.xml中加载的，所以在ForegroundSchedule获取的xxxConnector就是null，为了解决这个问题，我在springmvc-servlet.xml底部引入了这个配置文件，相当于调整先后顺序了，但是app-schedule就会被加载两次了，一次是web.xml加载的，一次是springmvc-servlet.xml加载的，前者拿到的xxxConnector还是null，后者则有值，所以为了不让web-xml加载，我只能讲这个配置文件改成base-schedule
+	</description>
+
+	<bean id="foregroundSchedule" class="com.tingbo.base.schedule.ForegroundSchedule" />
+	<task:scheduler id="foregroundScheduleTask" pool-size="5" />
+	<task:scheduled-tasks scheduler="foregroundScheduleTask">
+
+		<!-- 例子 -->
+		<!-- 这种方式适用于从服务启动开始，延迟initial-delay毫秒开始，然后每隔fixed-delay 毫秒执行定时器任务，不断的执行，直到服务停止。方式简单直接，不需要考虑cron。 -->
+		<!-- <task:scheduled ref="commonSchedule" method="method1" fixed-delay="300000" 
+			initial-delay="10000" /> -->
+		<!-- 这种方式使用cron来做定时器，适用于任何场合。 -->
+		<!-- <task:scheduled ref="commonSchedule" method="method2" cron="0 30 0 
+			? * *" /> -->
+
+		<!-- 定时读取数据库中的用户设定的系统前台配置，覆盖系统的启动默认前台配置。 -->
+		<!-- 定时器间隔不要设得太低，最好是一分钟以上，因为设太低baseFrameworkWS的压力会很大， -->
+		<!-- 所以就设为1分钟吧。 -->
+		<task:scheduled ref="foregroundSchedule" method="readCustomFgConfig"
+			fixed-delay="60000" initial-delay="10000" />
+	</task:scheduled-tasks>
+
+
+</beans>
